@@ -41,6 +41,7 @@ dependencies:
   google_generative_ai: ^0.4.7
   bloc: ^9.0.0
   http: ^1.4.0
+  
 
 dev_dependencies:
   flutter_test:

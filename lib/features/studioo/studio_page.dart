@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:vibe_connect/features/studioo/widgets/showbox.dart';
+import 'package:vibe_connect/features/ai_meet/showbox.dart';
 import '../app_bar/app_bar.dart';
 import 'widgets/ai_creation_card.dart';
 
@@ -51,12 +51,7 @@ class AiStudioPage extends StatelessWidget {
                       padding: const EdgeInsets.all(0),
                       child: Material(
                         color: Colors.transparent,
-                        child: ShowBox(
-                          onClose: () {
-                            Navigator.of(context).pop();
-                          },
-                          onVideoGenerationTap: () { },
-                        ),
+                        
                       ),
                     ),
                   ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vibe_connect/features/ai_meet/calling_page.dart';
+import 'package:vibe_connect/features/ai_meet/joining_page.dart';
+import 'package:vibe_connect/features/ai_meet/showbox.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -57,16 +60,42 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.link),
                 title: const Text('Get a meeting link to share'),
                 onTap: () {
-                  // Handle get link
                   Navigator.pop(context);
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const ShowBox();
+                    },
+                  );
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.video_call),
                 title: const Text('Start an instant meeting'),
                 onTap: () {
-                  // Handle start meeting
-                  Navigator.pop(context);
+                  Navigator.pop(context); // Close the bottom sheet
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder:
+                          (context, animation, secondaryAnimation) =>
+                              const CallingPage(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        const begin = Offset(1.0, 0.0);
+                        const end = Offset.zero;
+                        const curve = Curves.ease;
+
+                        var tween = Tween(begin: begin, end: end)
+                            .chain(CurveTween(curve: curve));
+
+                        return SlideTransition(
+                          position: animation.drive(tween),
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
                 },
               ),
               ListTile(
@@ -147,7 +176,18 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return FractionallySizedBox(
+                            heightFactor: 0.9, // Adjust this value as needed
+                            child: JoiningPage(),
+                          );
+                        },
+                      );
+                    },
                     style: OutlinedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
