@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vibe_connect/features/studioo/studio_page.dart';
 import 'package:vibe_connect/features/ai_image/presentation/pages/image_generation_page.dart';
+import 'package:vibe_connect/features/ai_meet/home_page.dart';
+import 'package:vibe_connect/features/profile/profile_page.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
@@ -14,6 +17,10 @@ class _RootPageState extends State<RootPage> {
   // Commented out navigation screens as requested
   final List<Widget> _screens = [
     const ImageGenerationPage(),
+    const HomePage(),
+    const AiStudioPage(),
+    const ProfilePage(),
+
   ];
 
   void _onItemTapped(int index) {
@@ -24,12 +31,11 @@ class _RootPageState extends State<RootPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF1C1C1C), // Dark background
+    return Scaffold(      
       body: _screens[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
-          color: Color(0xFFf3f7fc),
+          color: Color(0xFFdbe7f3),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12),
             topRight: Radius.circular(12),
@@ -44,8 +50,8 @@ class _RootPageState extends State<RootPage> {
               children: [
                 _buildNavItem(0, 'zoom.png', 'Ai Meet'),
                 _buildNavItem(1, 'zoom.png', 'Studio'),
-                _buildNavItem(3, 'zoom.png', 'Follow Ups'),
-                _buildNavItem(4, 'zoom.png', 'Profile'),
+                _buildNavItem(2, 'zoom.png', 'Profile'),
+                _buildNavItem(3, 'zoom.png', 'Profile'),
               ],
             ),
           ),
